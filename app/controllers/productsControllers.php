@@ -1,6 +1,7 @@
 <?php
 // items
-class productsControllers extends Controller{
+class productsControllers extends Controller
+{
 
 
     private $itemsModel;
@@ -9,32 +10,54 @@ class productsControllers extends Controller{
     {
         $this->itemsModel = $this->model('products');
     }
- 
+
+  
+
+    // public function add_products()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //         if (isset($_POST["submit"])) {
+
+    //             $_POST = filter_input_array(INPUT_POST);
+
+    //             $name = $_POST['name'];
+    //             $price = $_POST['price'];
+    //             $description = $_POST['description'];
+    //             $picture = $_POST['picture'];
+    //             $quantity = $_POST['quantity'];
+
+    //             $this->itemsModel->add_products($name, $price, $description, $picture, $quantity);
+    //             header('location:' . URLROOT . '/productsControllers/dashboard');
+    //         }
+    //     } else {
+    //         $this->view('add_products');
+    //     }
+    // }
+
+
     public function add_products()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if (isset($_POST['submit'])) {
         
-            $_POST = filter_input_array(INPUT_POST);
-
-            echo '<pre>';
-            var_dump($_POST);
-            echo '</pre>';
-            exit;
-
             $name = $_POST['name'];
-            $description = $_POST['description'];
             $price = $_POST['price'];
+            $description = $_POST['description'];
             $picture = $_POST['picture'];
             $quantity = $_POST['quantity'];
+           
+            
+            $this->itemsModel->add_products($name,$price,$description ,$picture,$quantity);
+            return $this->dashboard();
 
-            $this->itemsModel->add_products($name, $description, $price, $picture,$quantity);
-            header('location:' . URLROOT . '/productsControllers/dashboard');
         }else{
             $this->view('add_products');
         }
+        
+    
     }
 
-    
+
 
 
     public function dashboard()
@@ -65,10 +88,9 @@ class productsControllers extends Controller{
         $picture = $_POST['picture'];
         $quantity = $_POST['quantity'];
         $id = $_POST['id'];
-        
     }
 
-  
+
 
     public function delete_products($id)
     {
@@ -78,8 +100,7 @@ class productsControllers extends Controller{
         $data = [
             'products' => $products
         ];
-        
+
         $this->view('dashboard', $data);
     }
-
 }

@@ -36,5 +36,5 @@
       <?php endforeach; ?>
     </table>
   </div>
-  <a href="<?= URLROOT ?>/productsControllers/add_products" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Item</a>
+  <a href="<?= URLROOT ?>/Pages/add_products" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> New Item</a>
 </div>

@@ -24,19 +24,19 @@ class products
         return $this->db->fetchAll();
     }
 
-    public function add_products($name, $description, $price, $picture, $quantity)
+    public function add_products($name,  $price,$description, $picture, $quantity)
     {
-        $this->db->query(
-            'INSERT INTO products ( name, description,  price, picture, quantity) VALUES (:name,:description,:price,:picture,:quantity)'
+    
+        $this->db->query("INSERT INTO `products` ( `name`,  `price`,  `description`,`picture`, `quantity`) VALUES (:name,:price,:description,:picture,:quantity)"
         );
 
         
         $this->db->bind(':name', $name);
-        $this->db->bind(':description', $description);
         $this->db->bind(':price', $price);
+        $this->db->bind(':description', $description);
         $this->db->bind(':picture', $picture);
         $this->db->bind(':quantity', $quantity);
-        $this->db->execute();
+    
         if ($this->db->execute())
             return TRUE;
         else
